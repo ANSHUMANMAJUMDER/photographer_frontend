@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Carousel with Navbar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+    
+      font-family: 'Nunito Sans', sans-serif;
+      background: #ffe5d9;
+      color: #1e1e1e;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 15;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar .menu {
+      display: flex;
+      gap: 20px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar .menu a {
+      color: black;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .navbar .menu a:hover {
+      text-decoration: underline;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100vw;
+      height: 80vh;
+      margin-top: 60px;
+    }
+
+    .carousel img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+
+    .arrow:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .arrow.left {
+      left: 20px;
+    }
+
+    .arrow.right {
+      right: 20px;
+    }
+
+    .indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .indicators span {
+      width: 10px;
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .indicators span.active {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">MySite</div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <div class="carousel">
+    <img src="https://images.pexels.com/photos/30918681/pexels-photo-30918681/free-photo-of-vintage-ricohflex-camera-in-close-up-detail.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1" class="active">
+    <img src="https://images.pexels.com/photos/5435274/pexels-photo-5435274.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 2">
+    <img src="https://images.pexels.com/photos/32207415/pexels-photo-32207415/free-photo-of-dramatic-black-and-white-sculpture-against-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 3">
+    <img src="https://images.pexels.com/photos/18043236/pexels-photo-18043236/free-photo-of-shadow-of-a-person-in-a-concrete-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 4">
+    <button class="arrow left">&#10094;</button>
+    <button class="arrow right">&#10095;</button>
+
+    <div class="indicators">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    const indicators = document.querySelectorAll('.indicators span');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+        indicators[i].classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showSlide(currentIndex);
+    }
+
+    rightArrow.addEventListener('click', nextSlide);
+    leftArrow.addEventListener('click', prevSlide);
+
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentIndex = index;
+        showSlide(currentIndex);
+      });
+    });
+
+    // Optional: Auto-slide every 5 seconds
+    setInterval(nextSlide, 10000);
+  </script>
+</body>
+</html>

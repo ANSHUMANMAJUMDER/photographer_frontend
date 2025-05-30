@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>Portrait Gallery</title>
+  <style>
+    body {
+      
+      font-family: 'Nunito Sans', sans-serif;
+      background: #ffe5d9;
+      color: #1e1e1e;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      font-family: 'Cinzel', serif;
+    }
+
+
+
+    .gallery {
+      column-count: 4;
+      column-gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .image-container {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.15);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      transform: scale(0.8);
+      transition: transform 0.5s ease;
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    @media (max-width: 1200px) {
+      .gallery {
+        column-count: 3;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    portraits
+  </header>
+
+  <section class="gallery">
+    <!-- Gallery images will be appended here -->
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Full View">
+  </div>
+
+  <script>
+    const images = [
+      'https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=800&q=80',
+      'https://plus.unsplash.com/premium_photo-1747054588178-d2e3f110232a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1743275532238-f3e2cfd7406e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.pexels.com/photos/32284698/pexels-photo-32284698/free-photo-of-charming-house-with-blooming-roses-and-red-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/32239849/pexels-photo-32239849/free-photo-of-elegant-woman-in-red-dress-with-braids.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/28055747/pexels-photo-28055747/free-photo-of-a-person-lying-with-a-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/20052005/pexels-photo-20052005/free-photo-of-palace-wall-design.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+
+    ];
+
+    const gallery = document.querySelector('.gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    images.forEach(src => {
+      const container = document.createElement('div');
+      container.className = 'image-container';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'Portrait';
+      container.appendChild(img);
+      gallery.appendChild(container);
+
+      img.addEventListener('click', () => {
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
