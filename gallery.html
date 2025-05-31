@@ -1,31 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portrait Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      
-      font-family: 'Nunito Sans', sans-serif;
-      background: #ffe5d9;
-      color: #1e1e1e;
+    :root {
+      --bg-color: #ffe5d9; /* changed background */
+      --navbar-bg: #4b4637;
+      --navbar-text: #d4c9b1;
+      --navbar-hover: #b39b7f;
+      --heading-color: #3a3629;
+      --text-color: #1e1e1e;
+      --button-bg: #a57c52;
+      --button-hover: #8e6840;
+      --input-bg: #f5f1e9;
+      --input-border: #b39b7f;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease-in-out;
+    }
+
+   body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: radial-gradient(circle at center, #ffe5d9 0%, #f9d7ca 70%);
+  color: var(--text-color);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at center, #ffe5d9 0%, #3a3629 70%),
+    url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23f5d0c1" opacity="0.05"/></svg>');
+  background-repeat: repeat;
+  background-size: 100% 100%, 20px 20px;
+}
     header {
       padding: 1rem 2rem;
       font-size: 2.5rem;
       font-weight: bold;
       font-family: 'Cinzel', serif;
+      color: var(--heading-color);
     }
 
+    /* Navbar styles */
 
+    nav.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--navbar-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      z-index: 10000;
+      font-family: 'Cinzel', serif;
+    }
+
+    nav.navbar .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navbar-text);
+      letter-spacing: 2px;
+      user-select: none;
+      cursor: default;
+    }
+
+    nav.navbar .menu {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    nav.navbar .menu a {
+      color: var(--navbar-text);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    nav.navbar .menu a:hover,
+    nav.navbar .menu a:focus {
+      color: var(--navbar-hover);
+      border-bottom: 2px solid var(--navbar-hover);
+    }
+
+    /* Hamburger menu */
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 24px;
+      height: 18px;
+      justify-content: space-between;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: var(--navbar-text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* When active (hamburger open) */
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Responsive Navbar */
+
+    @media (max-width: 900px) {
+      nav.navbar {
+        padding: 1rem 1.5rem;
+      }
+
+      nav.navbar .menu {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        height: calc(100vh - 60px);
+        background: var(--navbar-bg);
+        flex-direction: column;
+        width: 200px;
+        padding-top: 2rem;
+        gap: 1.5rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      nav.navbar .menu.active {
+        transform: translateX(0);
+      }
+
+      nav.navbar .menu a {
+        font-size: 1.2rem;
+        padding: 0.5rem 1.5rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Gallery styles */
 
     .gallery {
       column-count: 4;
       column-gap: 1.5rem;
-      padding: 2rem;
+      padding: 5rem 2rem 2rem; /* padding top increased to avoid navbar */
     }
 
     .image-container {
@@ -43,6 +184,7 @@
       object-fit: cover;
       transition: transform 0.8s ease;
       cursor: pointer;
+      display: block;
     }
 
     .gallery img:hover {
@@ -81,6 +223,15 @@
       transform: scale(1);
     }
 
+     footer {
+      width: 100%;
+      text-align: center;
+      padding: 15px 10px;
+      color: var(--navbar-bg);
+      font-size: 0.9rem;
+      background: #f5f2e9;
+      margin-top: auto;
+    }
     @media (max-width: 1200px) {
       .gallery {
         column-count: 3;
@@ -101,19 +252,57 @@
   </style>
 </head>
 <body>
+  <nav class="navbar" role="navigation" aria-label="Primary Navigation">
+    <div class="logo" tabindex="0">Classic Lens</div>
+    <div class="menu" id="menu">
+      <a href="index.html" tabindex="0">Home</a>
+      <a href="about.html" tabindex="0">About</a>
+      <a href="gallery.html" tabindex="0">Portfolio</a>
+      <a href="contact_us.html" tabindex="0">Contact</a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
   <header>
     portraits
   </header>
 
-  <section class="gallery">
+  <section class="gallery" aria-label="Portrait gallery">
     <!-- Gallery images will be appended here -->
   </section>
 
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Full View">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <img src="" alt="Full View" />
   </div>
-
+  
+  <footer>
+    <p>&copy; 2025 Classic Lens. All rights reserved.</p>
+  </footer>
   <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    function toggleMenu() {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Gallery and lightbox
     const images = [
       'https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80',
@@ -128,7 +317,6 @@
       'https://images.pexels.com/photos/32239849/pexels-photo-32239849/free-photo-of-elegant-woman-in-red-dress-with-braids.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       'https://images.pexels.com/photos/28055747/pexels-photo-28055747/free-photo-of-a-person-lying-with-a-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       'https://images.pexels.com/photos/20052005/pexels-photo-20052005/free-photo-of-palace-wall-design.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-
     ];
 
     const gallery = document.querySelector('.gallery');
