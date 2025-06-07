@@ -2,248 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Classic Lens - About Us</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --navbar-bg: #4b4637;
-      --navbar-text: #d4c9b1;
-      --navbar-hover: #b39b7f;
-      --arrow-bg: rgba(75, 70, 55, 0.6);
-      --arrow-hover-bg: rgba(75, 70, 55, 0.85);
-      --arrow-color: #d4c9b1;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      transition: all 0.3s ease-in-out;
-    }
-
-    body {
-      font-family: 'Nunito Sans', sans-serif;
-      background: #fff8f0;
-      color: #3a3629;
-      min-height: 100vh;
-      padding-top: 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    nav.navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--navbar-bg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 3rem;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-      z-index: 10000;
-      font-family: 'Cinzel', serif;
-    }
-
-    nav.navbar .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--navbar-text);
-      letter-spacing: 2px;
-      user-select: none;
-      cursor: default;
-    }
-
-    nav.navbar .menu {
-      display: flex;
-      gap: 2.2rem;
-    }
-
-    nav.navbar .menu a {
-      color: var(--navbar-text);
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 0.25rem 0;
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    nav.navbar .menu a:hover,
-    nav.navbar .menu a:focus {
-      color: var(--navbar-hover);
-      border-bottom: 2px solid var(--navbar-hover);
-    }
-
-    nav.navbar .menu a.active {
-      border-bottom: 2px solid var(--navbar-hover);
-      color: var(--navbar-hover);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      width: 24px;
-      height: 18px;
-      justify-content: space-between;
-    }
-
-    .hamburger span {
-      display: block;
-      height: 3px;
-      background: var(--navbar-text);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    main {
-      max-width: 900px;
-      margin: 3rem auto 4rem;
-      padding: 2rem 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #3a3629;
-      font-family: 'Nunito Sans', sans-serif;
-    }
-
-    main h1, main h2 {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--navbar-bg);
-      text-align: center;
-    }
-
-    main p {
-      margin-bottom: 1.2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    footer {
-      width: 100%;
-      text-align: center;
-      padding: 15px 10px;
-      color: var(--navbar-bg);
-      font-size: 0.9rem;
-      background: #f5f2e9;
-      margin-top: auto;
-    }
-
-    @media (max-width: 900px) {
-      nav.navbar {
-        padding: 1rem 1.5rem;
-      }
-
-      nav.navbar .menu {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        height: calc(100vh - 60px);
-        background: var(--navbar-bg);
-        flex-direction: column;
-        width: 200px;
-        padding-top: 2rem;
-        gap: 1.5rem;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.4);
-      }
-
-      nav.navbar .menu.active {
-        transform: translateX(0);
-      }
-
-      nav.navbar .menu a {
-        font-size: 1.2rem;
-        padding: 0.5rem 1.5rem;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      main {
-        margin: 5rem 1rem 4rem;
-        padding: 1.5rem 1.5rem;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | CLASSIC LENS</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Primary Navigation">
-    <div class="logo" tabindex="0">Classic Lens</div>
-    <div class="menu" id="menu">
-      <a href="index.html" tabindex="0">Home</a>
-      <a href="about.html" tabindex="0" class="active">About</a>
-      <a href="gallery.html" tabindex="0">Portfolio</a>
-      <a href="contact_us.html" tabindex="0">Contact</a>
-    </div>
-    <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
+  <div class="container">
+    <aside class="sidebar">
+      <h1>CLASSIC LENS</h1>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#">New Work</a></li>
+          <li><a href="#">Destinations</a></li>
+          <li><a href="#">Landscapes</a></li>
+          <li><a href="#">Portraits</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact_us.html">Connect</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-  <main>
-    <h1>About Us</h1>
-    <p>
-      At Classic Lens, we are passionate about crafting exceptional digital experiences.
-      Our dedicated team combines creativity and technology to deliver innovative solutions
-      tailored to your needs. We believe in quality, integrity, and collaboration to help
-      your business thrive in the digital age.
-    </p>
-    <p>
-      Founded in 2025, we have grown into a trusted partner for clients around the globe,
-      committed to excellence and continuous improvement.
-    </p>
-  </main>
+    <main class="main-content">
+      <div class="about-wrapper">
+        <div class="about-image">
+          <img src="https://images.pexels.com/photos/2061302/pexels-photo-2061302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About Image" />
 
-  <footer>
-    <p>&copy; 2025 Classic Lens. All rights reserved.</p>
-  </footer>
+          
+        </div>
+      <div class="about-text">
+  <h2>About Classic Lens</h2>
+  <p>
+    Classic Lens was born from a quiet yet profound reverence for the act of seeing — truly seeing — the world in its most natural and unscripted form. We are not merely a photography studio; we are curators of stillness, explorers of light, and documenters of the intangible emotions that shape human experience. At our core, we believe that photography is not simply about pointing a camera at something beautiful. It’s about revealing the essence of a moment — a fleeting gesture, a silent landscape, a subtle interaction between shadow and soul. It’s about slowing down in an age of speed, creating permanence in a time of impermanence, and offering the viewer something they didn’t even realize they were looking for.
+  </p>
 
-  <script>
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
+  <p>
+    Our story began as many creative pursuits do — with a restless longing and a single lens. From remote villages to urban sprawl, deserts to oceans, Classic Lens has traveled across continents to find the extraordinary in the ordinary. Each photograph we take is a meditation, an intentional pause that allows us to connect with the environment and subject at a deeper level. This philosophy guides every part of our process, from the quiet anticipation before a shutter click to the meticulous post-processing that follows. We are not chasing trends or algorithms; we are cultivating timeless work that speaks softly yet powerfully, that invites rather than demands attention.
+  </p>
 
-    function toggleMenu() {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-      hamburger.setAttribute('aria-expanded', !expanded);
-      hamburger.classList.toggle('active');
-      menu.classList.toggle('active');
-    }
+  <p>
+    The name “Classic Lens” reflects both our inspiration and our aspiration. We are drawn to the aesthetics of film, to the restrained elegance of monochrome, to compositions that respect negative space and visual balance. Our influences include mid-century photojournalism, fine-art portraiture, and cinematic landscape photography. Yet we are not bound by nostalgia. We embrace modern tools when they serve the story — whether that’s drone photography, long exposures, or experimental color grading. What matters most is not how we capture the image, but why.
+  </p>
 
-    hamburger.addEventListener('click', toggleMenu);
-    hamburger.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMenu();
-      }
-    });
-  </script>
+  <p>
+    Our body of work spans multiple genres. In our landscape series, we seek to portray nature not as a postcard but as a living, breathing character. Mist rolling over a mountain ridge, sand dunes bending like waves in the wind, trees bending toward the dawn — these are not backdrops; they are protagonists. When photographing people, we approach with humility and curiosity. A good portrait, in our view, is not about perfection. It’s about presence. It’s about capturing someone as they are when they forget the camera is there — vulnerable, powerful, true. In our travel photography, we’re always searching for cultural texture — the rhythm of a market, the geometry of an alleyway, the color of conversation. Nothing staged, nothing superimposed. Just life, seen through a lens of intention.
+  </p>
+
+  <p>
+    Our work has found its place in art galleries, private collections, editorial features, and international campaigns. But what matters more than recognition is resonance. We’ve had the privilege of hearing from viewers who said one of our photographs reminded them of their homeland, or a loved one, or a moment they thought they had forgotten. That, to us, is the highest form of success — not likes or awards, but emotional connection.
+  </p>
+
+  <p>
+    We are committed not just to beauty, but to responsibility. Many of the places we document are fragile — ecologically, culturally, or politically. With that awareness, we aim to photograph with respect and context. We strive to collaborate with local communities, support ethical travel, and always give more than we take. A photograph is not just an image — it’s a footprint, and we are mindful of the footprints we leave behind.
+  </p>
+
+  <p>
+    Over the years, Classic Lens has grown from a one-person endeavor to a small collective of passionate creators — photographers, editors, curators, and writers — each of whom brings their own sensitivity and perspective. What unites us is not just craft, but conviction: the belief that visual storytelling can be a form of healing, remembering, resisting, and celebrating. In an age flooded with disposable images, we strive to create work that endures.
+  </p>
+
+  <p>
+    This website is more than a portfolio; it’s a journal of our journey. You’ll find curated series as well as spontaneous captures, longform photo essays and isolated frames, personal projects and commissioned works. We encourage you to explore slowly. Let the images breathe. Let them linger. Each collection is presented with minimal interference — no flashy effects, no intrusive captions — because we trust in the power of silence. Because we believe you don’t always need to explain what’s been felt.
+  </p>
+
+  <p>
+    We invite you to connect, to reflect, and to revisit. Whether you're an art collector, a fellow traveler, a brand seeking soulful visuals, or someone who simply enjoys beautiful images — thank you for being here. Thank you for seeing through our lens. We hope you find something here that stays with you.
+  </p>
+</div>
+
+      </div>
+      <footer>© 2025 CLASSIC LENS</footer>
+    </main>
+  </div>
 </body>
 </html>
