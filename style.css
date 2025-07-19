@@ -13,7 +13,7 @@ body, html {
 .container {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  height: 100%;
 }
 
 /* Sidebar */
@@ -56,18 +56,21 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+   overflow-y: auto; /* allow scrolling inside main-content */
+  max-height: 100vh;
 }
 
 /* Image Container */
 .image-box {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  /* border: 1px solid #ddd; */
+  /* background-color: #f9f9f9; */
 }
 
 .slide {
@@ -76,6 +79,7 @@ body, html {
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  cursor: pointer;
 }
 
 .slide img {
@@ -140,6 +144,7 @@ footer {
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .sidebar {
@@ -190,46 +195,50 @@ footer {
 
 /* About layout override */
 .about-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 2rem 0;
+    animation: fadeIn 1s ease;
+}
+
+.about-image {
+  flex: 1 1 300px;
+  text-align: center;
 }
 
 .about-image img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 8px;
-  object-fit: cover;
-  display: block;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
 }
 
 .about-text {
-  font-family: "Helvetica Neue", sans-serif;
-  color: #1a1a1a;
-  font-size: 16px;
-  line-height: 1.75;
-  letter-spacing: 0.3px;
-  max-width: 100%;
+  flex: 2 1 500px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
 }
 
 .about-text h2 {
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-  color: #000;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #111;
 }
 
 .about-text p {
-  margin-bottom: 24px;
-  text-align: justify;
+  margin-bottom: 1rem;
+}
+
+.about-text a {
+  color: #444;
+  text-decoration: underline;
+}
+
+.about-text a:hover {
+  color: #000;
 }
 
 /* Mobile Responsive */
@@ -331,6 +340,7 @@ input:focus, textarea:focus {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .sidebar {
@@ -362,6 +372,7 @@ input:focus, textarea:focus {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+    animation: fadeIn 1s ease;
 }
 
 .section-title {
@@ -433,6 +444,7 @@ input:focus, textarea:focus {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .sidebar {
@@ -454,37 +466,63 @@ input:focus, textarea:focus {
 
 
 /* blog details section  */
-
 .blog-post {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 40px auto; /* gives breathing space at top and bottom */
+  padding: 0 20px;
+    animation: fadeIn 1s ease;
 }
 
 .post-image {
+  display: block;
   width: 100%;
+  max-width: 400px; /* adjust size here */
   height: auto;
   border-radius: 8px;
-  margin-bottom: 40px;
+  margin: 0 auto 24px auto; /* center horizontally */
   object-fit: cover;
 }
 
+
+.post-content {
+  text-align: left;
+}
+
 .post-title {
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111;
 }
 
 .post-date {
-  font-size: 13px;
+  font-size: 0.9rem;
   color: #777;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .post-content p {
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 24px;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
   text-align: justify;
+}
+
+
+@media (max-width: 768px) {
+  .blog-post {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+  }
 }
 
 
@@ -493,6 +531,7 @@ input:focus, textarea:focus {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .sidebar {
